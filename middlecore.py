@@ -5,14 +5,16 @@ import json
 import re
 
 def set_argments(input_str,pointer,target_args,raw_text):
-    if re.match("[0-9]+",input_str):
+    if re.match("^[0-9]+$",input_str):
         target_args[int(pointer)] = raw_text[int(input_str)]
     else:
         target_args[int(pointer)] = input_str
     return target_args
 
 def main(detect_file, out_file,comic_list):
+    print("throw GCP API")
     core.render_doc_text(detect_file, out_file)
+    print("sucsess!!")
 
     with open(out_file,encoding="utf-8") as f:
         temp_str = f.read()
@@ -59,6 +61,7 @@ def main(detect_file, out_file,comic_list):
         elif temp == "5":
             print(add_text)
         elif temp == "9":
+            print("NEXT")
             break
         else:
             print("choise content")
