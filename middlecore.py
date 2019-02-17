@@ -11,16 +11,8 @@ def set_argments(input_str,pointer,target_args,raw_text):
         target_args[int(pointer)] = input_str
     return target_args
 
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('detect_file', help='The image for text detection.')
-    out_file = "d:/kyokou/test.txt"
-    comic_list = "comic_list.txt"
-    args = parser.parse_args()
-
-    parser = argparse.ArgumentParser()
-    #core.render_doc_text(args.detect_file, out_file)
+def main(detect_file, out_file,comic_list):
+    core.render_doc_text(detect_file, out_file)
 
     with open(out_file,encoding="utf-8") as f:
         temp_str = f.read()
@@ -59,7 +51,7 @@ if __name__ == '__main__':
             title = input(" >> ")
             add_text = set_argments(title,2,add_text,splited_text)
         elif temp == "3":
-            print("set year :" + add_text[3], end = "" )
+            print("set date :" + add_text[3], end = "" )
             year = input(" >> ")
             add_text = set_argments(year,3,add_text,splited_text)
         elif temp == "4":
@@ -76,3 +68,14 @@ if __name__ == '__main__':
         f.write( temp_line + "," )
     f.write( "\n" )
     f.close()
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('detect_file', help='The image for text detection.')
+    out_file = "rest.txt"
+    comic_list = "comic_list.txt"
+    args = parser.parse_args()
+
+    parser = argparse.ArgumentParser()
+    main(args.detect_file,out_file,comic_list)
